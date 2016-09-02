@@ -1,0 +1,28 @@
+{
+  "name": "jeeves",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hashmaths/jeeves.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hashmaths/jeeves/issues"
+  },
+  "homepage": "https://github.com/hashmaths/jeeves#readme",
+  "dependencies": {
+    "irc": "^0.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.4.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-standard": "^2.0.0"
+  }
+}
