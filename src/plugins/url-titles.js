@@ -15,9 +15,11 @@ module.exports = (client) =>
         }
 
         const $ = cheerio.load(body)
-        const title = $('title').text()
+        const title = $('title').text().trim()
 
-        client.say(to, `>>> ${title}`)
+        if (title) {
+          client.say(to, `>>> ${title}`)
+        }
       })
     })
   })
