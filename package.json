@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./src",
+    "lint": "eslint ./src ./test",
     "pretest": "npm run lint",
     "test": "npm run test-unit && npm run test-integration",
-    "test-unit": "mocha $(find test/unit -name '*.js')",
-    "test-integration": "mocha $(find test/integration -name '*.js')"
+    "test-unit": "mocha --recursive test/unit",
+    "test-integration": "mocha --recursive test/integration"
   },
   "repository": {
     "type": "git",
