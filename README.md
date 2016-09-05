@@ -4,6 +4,9 @@
 
 ## Running
 
-  npm install
-  npm test
-  node src/bot.js
+    npm install
+    npm test
+    cp config.example.js config
+    npm start
+
+You may also want to edit `config` before starting.
