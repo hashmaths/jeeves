@@ -15,4 +15,5 @@ client.addListener('error', (message) => {
   console.error(message)
 })
 
-require('./plugins/url-titles.js')(client)
+const request = require('request')
+require('./plugins/url-titles.js')(client, request)

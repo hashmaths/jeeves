@@ -4,6 +4,7 @@
 
 const chai = require('chai')
 const expect = chai.expect
+const request = require('request')
 
 describe('url-titles', () => {
   it('should pull out a google.com url and get the correct title', (done) => {
@@ -18,6 +19,6 @@ describe('url-titles', () => {
       }
     }
 
-    require('../../../src/plugins/url-titles.js')(client)
+    require('../../../src/plugins/url-titles.js')(client, request)
   })
 })

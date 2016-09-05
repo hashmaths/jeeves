@@ -1,8 +1,7 @@
 const getUrls = require('get-urls')
-const request = require('request')
 const cheerio = require('cheerio')
 
-module.exports = (client) =>
+module.exports = (client, request) =>
   client.addListener('message', (from, to, message) => {
     console.log(from + ' => ' + to + ': ' + message)
 
