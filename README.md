@@ -6,7 +6,7 @@
 
     npm install
     npm test
-    cp config.example.js config
+    cp config.example.js config.js
     npm start
 
-You may also want to edit `config` before starting.
+You may also want to edit `config.js` before starting.

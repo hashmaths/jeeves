@@ -1,6 +1,6 @@
 const irc = require('irc')
 
-const config = require('../config')
+const config = require('../config.js')
 console.log(config)
 
 const client = new irc.Client(config.host, config.nick, {
