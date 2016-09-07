@@ -7,7 +7,7 @@ module.exports = (client, rng) =>
     }
 
     const choices = message.substring(3)
-                           .split(/or/i)
+                           .split(/\bor\b/i)
                            .map(s => s.trim())
                            .filter(s => s)
 
