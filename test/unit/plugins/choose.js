@@ -64,6 +64,26 @@ describe('choose', () => {
     client.say.should.have.been.calledWith('to', 'a')
   })
 
+  it('should work in pms', () => {
+    const client = {
+      addListener: (name, callback) => {
+        callback('from', 'me', '!c a or b')
+      },
+      say: sinon.spy(),
+      nick: 'me'
+    }
+
+    const rng = {
+      pick: (arr) => {
+        return arr[0]
+      }
+    }
+
+    require('../../../src/plugins/choose.js')(client, rng)
+
+    client.say.should.have.been.calledWith('from', 'a')
+  })
+
   it('should collapse down the ors', () => {
     const client = {
       addListener: (name, callback) => {
