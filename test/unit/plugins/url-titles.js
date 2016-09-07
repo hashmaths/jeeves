@@ -42,4 +42,23 @@ describe('url-titles', () => {
 
     client.say.should.have.been.calledWith('to', '>>> lol')
   })
+
+  it('should also work on PMs', () => {
+    var request = (uri, handler) =>
+      // ignore the uri
+      handler(null, 200,
+          '<html><head><title>lol</title></head><body>lol</body></html>')
+
+    var client = {
+      addListener: (name, callback) => {
+        callback('you', 'me', 'message containing url https://google.com :D')
+      },
+      say: sinon.spy(),
+      nick: 'me'
+    }
+
+    require('../../../src/plugins/url-titles.js')(client, request)
+
+    client.say.should.have.been.calledWith('you', '>>> lol')
+  })
 })

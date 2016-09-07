@@ -15,9 +15,10 @@ module.exports = (client, request) =>
 
         const $ = cheerio.load(body)
         const title = $('title').text().trim()
+        const target = client.nick === to ? from : to
 
         if (title) {
-          client.say(to, `>>> ${title}`)
+          client.say(target, `>>> ${title}`)
         }
       })
     })
