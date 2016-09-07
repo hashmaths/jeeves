@@ -17,3 +17,7 @@ client.addListener('error', (message) => {
 
 const request = require('request')
 require('./plugins/url-titles.js')(client, request)
+
+const Random = require('random-js')
+const rng = new Random(Random.engines.mt19937().autoSeed())
+require('./plugins/choose.js')(client, rng)
