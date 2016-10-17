@@ -61,4 +61,29 @@ describe('url-titles', () => {
 
     client.say.should.have.been.calledWith('you', '>>> lol')
   })
+
+  it('should change newlines in titles to spaces', () => {
+    var request = (uri, handler) => {
+      handler(null, 200,
+          `<html><head><title>lol
+
+          who put all these newlines in?
+
+          How silly.
+          </title></head><body>lol</body></html>`
+          )
+    }
+
+    var client = {
+      addListener: (name, callback) => {
+        callback('you', 'me', 'message containing url https://google.com :D')
+      },
+      say: sinon.spy(),
+      nick: 'me'
+    }
+
+    require('../../../src/plugins/url-titles.js')(client, request)
+
+    client.say.should.have.been.calledWith('you', '>>> lol who put all these newlines in? How silly.')
+  })
 })

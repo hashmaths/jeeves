@@ -14,7 +14,9 @@ module.exports = (client, request) =>
         }
 
         const $ = cheerio.load(body)
-        const title = $('title').text().trim()
+        const title = $('title').text()
+                      .replace(/\s+/g, ' ')
+                      .trim()
         const target = client.nick === to ? from : to
 
         if (title) {
