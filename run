@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Example script for automatically deploying jeeves
+# Directory structure:
+#
+#   ./jeeves     <--- git repo
+#   ./key        <--- read only deploy key
+#   ./run        <--- a script like this
+#
+# When jeeves exits it will go around the pull, build, and run loop again.
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+while true
+do
+	GIT_SSH_COMMAND="ssh -i ${__dir}/key" git -C ./jeeves pull
+
+	( cd ./jeeves &&
+		docker build -t jeeves:latest . &&
+		docker run -it -v ${__dir}/jeeves/config.js:/jeeves/config.js -t jeeves:latest )
+
+  sleep 5
+done
