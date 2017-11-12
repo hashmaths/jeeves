@@ -8,6 +8,7 @@ const client = new irc.Client(config.host, config.nick, {
   port: config.port,
   secure: config.ssl,
   selfSigned: true,
+  password: config.password,
   channels: config.channels
 })
 
