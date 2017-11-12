@@ -23,5 +23,5 @@ do
 		docker build -t jeeves:latest . &&
 		docker run -it -v ${__dir}/jeeves/config.js:/jeeves/config.js -t jeeves:latest )
 
-  sleep 5
+	sleep 5
 done
