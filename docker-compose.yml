@@ -17,6 +17,12 @@ services:
       - IRC_SSL=0
       - IRC_SSL_SELF_SIGNED=0
       - IRC_CHANNELS=#jeeves
+
+      - PGHOST=db
+      - PGUSER=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres
+      - PGPORT=5432
     volumes:
       - .:/jeeves
       - /jeeves/node_modules

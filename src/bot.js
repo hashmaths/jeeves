@@ -1,6 +1,12 @@
 const irc = require('irc')
+const { Client } = require('pg')
 
 console.log(process.env)
+
+const db = new Client()
+db.connect()
+
+console.log('Connected to db!')
 
 const client = new irc.Client(process.env.IRC_HOST, process.env.IRC_NICK, {
   debug: true,
