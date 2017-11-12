@@ -13,7 +13,6 @@ run: build
 test: build
 	docker run \
 		-it \
-		-v ${ROOT_DIR}/config.js:/jeeves/config.js \
 		-t jeeves:latest \
 		npm test
 
