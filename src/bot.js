@@ -1,15 +1,14 @@
 const irc = require('irc')
 
-const config = require('../config.js')
-console.log(config)
+console.log(process.env)
 
-const client = new irc.Client(config.host, config.nick, {
+const client = new irc.Client(process.env.IRC_HOST, process.env.IRC_NICK, {
   debug: true,
-  port: config.port,
-  secure: config.ssl,
+  port: parseInt(process.env.IRC_PORT, 10),
+  secure: process.env.IRC_SSL === '1',
   selfSigned: true,
-  password: config.password,
-  channels: config.channels
+  password: process.env.IRC_PASSWORD,
+  channels: process.env.IRC_CHANNELS.split(',')
 })
 
 client.addListener('message', (from, to, message) => {

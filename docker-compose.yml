@@ -6,9 +6,25 @@ volumes:
 services:
   jeeves:
     build: .
+    depends_on:
+      - db
+      - irc
+    environment:
+      - IRC_NICK=jeeves
+      - IRC_HOST=irc
+      - IRC_PORT=6667
+      - IRC_PASSWORD=
+      - IRC_SSL=0
+      - IRC_SSL_SELF_SIGNED=0
+      - IRC_CHANNELS=#jeeves
     volumes:
       - .:/jeeves
       - /jeeves/node_modules
+
+  irc:
+    image: densuke/ngircd:latest
+    ports:
+      - 6667:6667
 
   db:
     image: postgres:10
@@ -16,3 +32,5 @@ services:
       - POSTGRES_PASSWORD=postgres
     volumes:
       - pg-data:/var/lib/postgresql/data
+    ports:
+      - 6667:6667

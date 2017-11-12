@@ -4,23 +4,10 @@
 
 Yet another IRC bot.
 
-## Running
+## Development
 
-Setup `config.js` before starting.
+Just use docker.
 
-    cp config.example.js config.js
-    vim config.js
+    docker-compose up -d
 
-Run tests
-
-    make test
-
-Run jeeves
-
-    make run
-
-Other useful `make` targets:
-
-  - ***make build**, build docker image
-  - ***make repl**, drop into node repl
-  - ***make sh**, shell
+There is now an IRC server available at `localhost:6667` and jeeves is in the channel `#jeeves`. Connect with `<insert your favourite irc client here>`.
