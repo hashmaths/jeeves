@@ -1,7 +1,5 @@
 module.exports = (client, rng) =>
   client.addListener('message', (from, to, message) => {
-    console.log(from + ' => ' + to + ': ' + message)
-
     if (message.indexOf('!quit') === 0) {
       let quitMessage
 

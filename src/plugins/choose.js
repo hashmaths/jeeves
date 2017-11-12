@@ -1,7 +1,5 @@
 module.exports = (client, rng) =>
   client.addListener('message', (from, to, message) => {
-    console.log(from + ' => ' + to + ': ' + message)
-
     if (message.indexOf('!c ') !== 0) {
       return
     }

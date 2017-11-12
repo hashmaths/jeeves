@@ -3,8 +3,6 @@ const cheerio = require('cheerio')
 
 module.exports = (client, request) =>
   client.addListener('message', (from, to, message) => {
-    console.log(from + ' => ' + to + ': ' + message)
-
     getUrls(message).map(uri => {
       request({
         uri

@@ -12,6 +12,10 @@ const client = new irc.Client(config.host, config.nick, {
   channels: config.channels
 })
 
+client.addListener('message', (from, to, message) => {
+  console.log(from + ' => ' + to + ': ' + message)
+})
+
 client.addListener('error', (message) => {
   console.error(message)
 })
