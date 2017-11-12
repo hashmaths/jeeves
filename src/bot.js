@@ -1,3 +1,6 @@
+
+const fs = require('fs')
+
 const irc = require('irc')
 const { Client } = require('pg')
 
@@ -7,6 +10,17 @@ const db = new Client()
 db.connect()
 
 console.log('Connected to db!')
+
+db.query(`create table if not exists migrations (
+  migration varchar(255) not null,
+  cr_date timestamp default now()
+)`)
+
+// for each file in ./sql/<migration>.sql
+const migrations = fs.readdirSync('./migrations/')
+
+// if <migration> not in select migration from migrations;
+// execute queries in file
 
 const client = new irc.Client(process.env.IRC_HOST, process.env.IRC_NICK, {
   debug: true,

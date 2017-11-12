@@ -14,6 +14,14 @@ There is now an IRC server available at `localhost:6667` and jeeves is in the ch
 
 ### How to
 
+#### Run tests
+
+    docker-compose exec jeeves npm test
+
+#### psql
+
+    docker-compose exec db psql -U postgres
+
 #### Install npm package
 
 Exec inside the container and install the package from there.
