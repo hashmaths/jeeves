@@ -7,7 +7,8 @@
     "lint": "eslint ./src ./test",
     "fix": "eslint --fix ./src ./test",
     "pretest": "npm run lint",
-    "test": "npm run test-unit && npm run test-integration",
+    "test": "npm run test-unit",
+    "test-full": "npm run test-unit && npm run test-integration",
     "test-unit": "mocha --recursive test/unit",
     "test-integration": "mocha --recursive test/integration",
     "start": "node ./src/bot.js"

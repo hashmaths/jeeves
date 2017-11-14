@@ -29,8 +29,10 @@ services:
 
   irc:
     image: densuke/ngircd:latest
+    # find host ports with `docker-compose ps`
+    # but getting errors on travis about ports used already
     ports:
-      - 6667:6667
+      - 6667
 
   db:
     image: postgres:10
@@ -39,4 +41,4 @@ services:
     volumes:
       - pg-data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5432

@@ -1,3 +1,10 @@
 language: node_js
-node_js:
-  - "node"
+sudo: required
+services:
+  - docker
+install:
+  - docker-compose up -d
+  - docker ps -a
+script:
+  - docker-compose exec jeeves npm run test-full
+
