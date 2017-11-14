@@ -5,9 +5,9 @@ module.exports = (client, rng) =>
     }
 
     const choices = message.substring(3)
-                           .split(/\bor\b/i)
-                           .map(s => s.trim())
-                           .filter(s => s)
+      .split(/\bor\b/i)
+      .map(s => s.trim())
+      .filter(s => s)
 
     if (choices.length < 1) {
       return

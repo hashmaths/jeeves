@@ -11,7 +11,7 @@ describe('url-titles', () => {
     var request = (uri, handler) =>
       // ignore the uri
       handler(null, 200,
-          '<html><body>lol</body></html>')
+        '<html><body>lol</body></html>')
 
     var client = {
       addListener: (name, callback) => {
@@ -29,7 +29,7 @@ describe('url-titles', () => {
     var request = (uri, handler) =>
       // ignore the uri
       handler(null, 200,
-          '<html><head><title>lol</title></head><body>lol</body></html>')
+        '<html><head><title>lol</title></head><body>lol</body></html>')
 
     var client = {
       addListener: (name, callback) => {
@@ -47,7 +47,7 @@ describe('url-titles', () => {
     var request = (uri, handler) =>
       // ignore the uri
       handler(null, 200,
-          '<html><head><title>lol</title></head><body>lol</body></html>')
+        '<html><head><title>lol</title></head><body>lol</body></html>')
 
     var client = {
       addListener: (name, callback) => {
@@ -65,13 +65,13 @@ describe('url-titles', () => {
   it('should change newlines in titles to spaces', () => {
     var request = (uri, handler) => {
       handler(null, 200,
-          `<html><head><title>lol
+        `<html><head><title>lol
 
-          who put all these newlines in?
+        who put all these newlines in?
 
-          How silly.
-          </title></head><body>lol</body></html>`
-          )
+        How silly.
+        </title></head><body>lol</body></html>`
+      )
     }
 
     var client = {
