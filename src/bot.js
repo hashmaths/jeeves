@@ -28,3 +28,4 @@ const rng = new Random(Random.engines.mt19937().autoSeed())
 require('./plugins/choose.js')(client, rng)
 
 require('./plugins/quit.js')(client)
+require('./plugins/reminder.js')(client)
