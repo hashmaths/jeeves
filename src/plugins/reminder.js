@@ -11,7 +11,7 @@ const inMemoryReminderStore = () => {
       reminders.push(reminder)
       reminders.sort(momcmp)
     },
-    hasNext: () => reminders.length,
+    hasNext: () => reminders.length > 0,
     peek: () => reminders[0],
     next: () => reminders.shift()
   }
@@ -23,10 +23,11 @@ const reminderTool = (client) => {
 
   const sendReminder = () => {
     const reminder = store.next()
-    const forWho = reminder.target === 'me' ? 'you' : reminder.target
+    const forWho = reminder.target.toLowerCase() === 'me' ? reminder.requester : reminder.target
+    const requester = reminder.target.toLowerCase() === 'me' ? 'you' : reminder.requester
     client.say(
       reminder.channel,
-      `${reminder.requester}: ${reminder.moment.fromNow()}, you asked me to remind ${forWho} to ${reminder.task}`)
+      `${forWho}: ${reminder.whenAsked.fromNow()}, ${requester} asked me to remind you to ${reminder.task}`)
     pokeReminder()
   }
 
@@ -37,9 +38,11 @@ const reminderTool = (client) => {
     timeout = setTimeout(sendReminder, Math.max(0, peekTime.diff(moment())))
   }
 
-  return (reminder) => {
-    store.insert(reminder)
-    pokeReminder()
+  return {
+    add: (reminder) => {
+      store.insert(reminder)
+      pokeReminder()
+    }
   }
 }
 
@@ -50,16 +53,22 @@ module.exports = client => {
     const target = client.nick === to ? from : to
 
     try {
-      const result = parser.parse(message)
+      const results = parser.parse(message)
+      if (!results.length) return
+
+      // take the last one because it's probably the most greedy and parsed more
+      const result = results[results.length - 1]
+
       result.channel = target
       result.requester = from
+      result.whenAsked = moment()
 
       const forWho = result.target === 'me' ? 'you' : result.target
-      client.say(target, `${from}: On ${result.channel}, I'll remind ${forWho} to ${result.task} ${result.moment.fromNow()}`)
+      client.say(target, `${from}: I'll remind ${forWho} to ${result.task} ${result.moment.fromNow()}`)
 
-      reminders(result)
+      reminders.add(result)
     } catch (e) {
-      console.log('failed', e)
+      // just silently ignore errors
     }
   })
 }
