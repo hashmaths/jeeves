@@ -39,3 +39,4 @@ require('./plugins/choose.js')(client, rng)
 
 // quitter
 require('./plugins/quit.js')(client)
+require('./plugins/reminder.js')(client)
