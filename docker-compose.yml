@@ -1,0 +1,44 @@
+version: '2'
+
+volumes:
+  pg-data:
+
+services:
+  jeeves:
+    build: .
+    depends_on:
+      - db
+      - irc
+    environment:
+      - IRC_NICK=jeeves
+      - IRC_HOST=irc
+      - IRC_PORT=6667
+      - IRC_PASSWORD=
+      - IRC_SSL=0
+      - IRC_SSL_SELF_SIGNED=0
+      - IRC_CHANNELS=#jeeves
+
+      - PGHOST=db
+      - PGUSER=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres
+      - PGPORT=5432
+    volumes:
+      - .:/jeeves
+      - /jeeves/node_modules
+
+  irc:
+    image: densuke/ngircd:latest
+    # find host ports with `docker-compose ps`
+    # but getting errors on travis about ports used already
+    ports:
+      - 6667
+
+  db:
+    image: postgres:10
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - 5432

@@ -4,23 +4,27 @@
 
 Yet another IRC bot.
 
-## Running
+## Development
 
-Setup `config.js` before starting.
+Just use docker.
 
-    cp config.example.js config.js
-    vim config.js
+    docker-compose up -d
 
-Run tests
+There is now an IRC server available at `localhost:6667` and jeeves is in the channel `#jeeves`. Connect with `<insert your favourite irc client here>`.
 
-    make test
+### How to
 
-Run jeeves
+#### Run tests
 
-    make run
+    docker-compose exec jeeves npm test
 
-Other useful `make` targets:
+#### psql
 
-  - ***make build**, build docker image
-  - ***make repl**, drop into node repl
-  - ***make sh**, shell
+    docker-compose exec db psql -U postgres
+
+#### Install npm package
+
+Exec inside the container and install the package from there.
+
+    docker-compose exec jeeves sh
+    npm install --save <package>
