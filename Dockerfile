@@ -1,7 +1,7 @@
 FROM node:8-alpine
 
 RUN apk add --update \
-  python build-base icu-dev && \
+  python build-base icu-dev git && \
   rm -rf /var/cache/apk/*
 
 WORKDIR /jeeves
